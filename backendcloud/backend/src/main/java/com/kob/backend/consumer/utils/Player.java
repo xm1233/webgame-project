@@ -16,6 +16,8 @@ public class Player {
     private Integer sx;
     private Integer sy;
     private List<Integer> steps;
+    private Integer botId; //botId=-1表示手动操作
+    private String botCode;
     private boolean check_tails_increasing(int step){
         if(step<=10)return true;
         return step%3==1;
