@@ -18,7 +18,7 @@ export class Snake extends GameObject{
         this.dr=[-1,0,1,0];
         this.dc=[0,1,0,-1];
         this.step=0;//回合数
-        this.eps=1e-2;//允许误差
+        this.eps=1;//允许误差
 
 
         if(this.id==="1")this.eye_direction=2;

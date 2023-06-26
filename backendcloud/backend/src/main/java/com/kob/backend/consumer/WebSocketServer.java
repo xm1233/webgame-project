@@ -40,7 +40,7 @@ public class WebSocketServer {
     public static RecordMapper recordMapper;
     private final static String addPlayerUrl="http://127.0.0.1:3001/player/add/";
     private final static String removePlayerUrl="http://127.0.0.1:3001/player/remove/";
-    private Game game=null;
+    public Game game=null;
 
     @Resource
     public void setBotMapper(BotMapper botMapper){WebSocketServer.botMapper=botMapper;}
