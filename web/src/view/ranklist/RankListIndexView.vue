@@ -1,5 +1,5 @@
 <template>
-  <ContentField>对战列表</ContentField>
+  <ContentField>排行榜</ContentField>
 </template>
 
 <script>

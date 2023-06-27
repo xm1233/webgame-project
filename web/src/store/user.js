@@ -7,7 +7,8 @@ export default {
         photo: "",
         is_login: false,
         token: "",
-        show_content:false
+        show_content:false,
+        password:""
     },
     getters: {},
     mutations: {
@@ -29,7 +30,13 @@ export default {
         },
         updateShowContent(state,show_content){
             state.show_content=show_content;
+        },
+        updateUserData(state,data){
+            state.username=data.username;
+            state.photo=data.photo;
+            state.password=data.password
         }
+
     },
     actions: {
         login(context, data) {

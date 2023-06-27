@@ -23,6 +23,7 @@ export default {
     const socketUrl=`ws://localhost:3000/websocket/${store.state.user.token}`;
     let socket=null;
 
+    store.commit("updateIsRecord",false);
     store.commit("updateLoser","none");
 
     onMounted(()=>{

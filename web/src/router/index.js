@@ -6,6 +6,8 @@ import UserBotIndexView from "../view/user/bot/UserBotIndexView";
 import ErrorIndexView from "../view/error/ErrorIndexView";
 import UserAccountLoginView from "@/view/user/account/UserAccountLoginView";
 import UserAccountRegisterView from "@/view/user/account/UserAccountRegisterView";
+import RecordContentView from "@/view/record/RecordContentView";
+import UserDataView from "@/view/user/personal/UserDataView";
 import store from '@/store/index'
 
 const routes = [
@@ -34,9 +36,25 @@ const routes = [
         }
     },
     {
+        path: "/record/:recordId/",
+        name: "record_content",
+        component: RecordContentView,
+        meta:{
+            requestAuth:true,
+        }
+    },
+    {
         path: "/user/bot/",
         name: "user_bot_index",
         component: UserBotIndexView,
+        meta:{
+            requestAuth:true,
+        }
+    },
+    {
+        path: "/user/personal/",
+        name: "user_personal",
+        component: UserDataView,
         meta:{
             requestAuth:true,
         }

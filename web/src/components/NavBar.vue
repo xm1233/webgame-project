@@ -8,10 +8,10 @@
             <router-link :class="route_name==='pk_index'? 'nav-link active':'nav-link'" to="/pk/">对战</router-link>
           </li>
           <li class="nav-item">
-            <router-link :class="route_name==='ranklist_index'?'nav-link active':'nav-link'" to="/ranklist/">对战列表</router-link>
+            <router-link :class="route_name==='record_index'?'nav-link active':'nav-link'" to="/record/">对局列表</router-link>
           </li>
           <li class="nav-item">
-            <router-link :class="route_name==='record_index'?'nav-link active':'nav-link'" to="/record/">排行榜</router-link>
+            <router-link :class="route_name==='ranklist_index'?'nav-link active':'nav-link'" to="/ranklist/">排行榜</router-link>
           </li>
         </ul>
         <ul class="navbar-nav" v-if="$store.state.user.is_login">
@@ -20,6 +20,10 @@
               {{$store.state.user.username}}
             </a>
             <ul class="dropdown-menu">
+              <li>
+                <router-link class="dropdown-item" to="/user/personal/">个人中心</router-link>
+              </li>
+              <li><hr class="dropdown-divider"></li>
               <li>
                 <router-link class="dropdown-item" to="/user/bot/">我的Bot</router-link>
               </li>
