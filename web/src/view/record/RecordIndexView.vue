@@ -31,6 +31,23 @@
       </tr>
       </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination" style="float: right">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous" @click="click_page(-2)">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li :class="'page-item '+page.is_active" v-for="page in pages" :key="page.number">
+          <a class="page-link" href="#" @click="click_page(page.number)">{{ page.number }}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next" @click="click_page(-1)">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </ContentField>
 </template>
 
@@ -52,6 +69,33 @@ export default {
     let records=ref([]);
     // eslint-disable-next-line no-unused-vars
     let total_records=0;
+    // eslint-disable-next-line no-unused-vars
+    let pages=ref([]);
+
+    const click_page =page =>{
+      if(page===-2)page=current_page-1;
+      else if(page===-1)page=current_page+1;
+      let max_page=parseInt(Math.ceil(total_records/10));
+
+      if(page>=1&&page<=max_page){
+        current_page=page;
+        pull_page(current_page);
+      }
+    }
+
+    const update_pages=()=>{
+      let max_page=parseInt(Math.ceil(total_records/10));
+      let newpages=[]
+      for(let i=current_page-2;i<=current_page+2;i++){
+        if(i>=1&&i<=max_page){
+          newpages.push({
+            number:i,
+            is_active:current_page===i?"active":""
+          })
+        }
+      }
+      pages.value=newpages;
+    }
 
     const pull_page = page =>{ //传入参数page
       $.ajax({
@@ -66,6 +110,7 @@ export default {
             success(resp){
               records.value=resp.records;
               total_records=resp.records_count;
+              update_pages()
             },
             error(resp){
               console.log(resp);
@@ -116,7 +161,7 @@ export default {
     }
 
     pull_page(current_page);
-    return {records,open_record_content}
+    return {records,open_record_content,pages,click_page}
   }
 }
 </script>

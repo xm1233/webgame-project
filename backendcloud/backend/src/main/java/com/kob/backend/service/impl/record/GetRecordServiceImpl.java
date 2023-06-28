@@ -22,7 +22,7 @@ public class GetRecordServiceImpl implements GetRecordService {
 
     @Override
     public JSONObject getRecord(Integer page) {
-        IPage<Record> recordIPage=new Page<>(page,40);
+        IPage<Record> recordIPage=new Page<>(page,10);
         QueryWrapper<Record> recordQueryWrapper=new QueryWrapper<>();
         recordQueryWrapper.orderByDesc("id");
         List<Record> recordList = recordMapper.selectPage(recordIPage,recordQueryWrapper).getRecords();
